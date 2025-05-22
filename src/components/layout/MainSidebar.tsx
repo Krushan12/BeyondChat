@@ -23,7 +23,7 @@ const MainSidebarItem: React.FC<MainSidebarItemProps> = ({
     <div 
       className={clsx(
         "flex items-center py-3 cursor-pointer relative group",
-        isActive ? "text-white" : "text-gray-200 hover:text-white"
+        isActive ? "bg-[#2C2C2E] text-white rounded-l-md" : "text-gray-200 hover:text-white"
       )}
       onClick={onClick}
     >
@@ -41,12 +41,14 @@ const MainSidebarItem: React.FC<MainSidebarItemProps> = ({
         </div>
       </div>
       
-      {/* Label always visible when showLabels is true */}
-      {showLabels && (
-        <span className="text-sm font-medium whitespace-nowrap">
-          {text}
-        </span>
-      )}
+      {/* Label with smooth transition */}
+      <span className={clsx(
+        "text-sm font-medium whitespace-nowrap transition-all duration-500 ease-in-out overflow-hidden",
+        showLabels ? "opacity-100 max-w-[120px] ml-1" : "opacity-0 max-w-0 ml-0",
+        isActive && "font-semibold"
+      )}>
+        {text}
+      </span>
     </div>
   );
 };
@@ -58,7 +60,7 @@ const MainSidebar: React.FC = () => {
   return (
     <div 
       className={clsx(
-        "fixed left-0 top-0 h-full bg-[#1C1C1E]/90 backdrop-blur-sm border-r border-[#3A3A3C] flex flex-col z-10 transition-all duration-300 ease-in-out",
+        "fixed left-0 top-0 h-full bg-[#1C1C1E]/90 backdrop-blur-sm border-r border-[#3A3A3C] flex flex-col z-10 transition-all duration-500 ease-in-out",
         isHovered ? "w-40" : "w-12"
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -66,6 +68,7 @@ const MainSidebar: React.FC = () => {
         setIsHovered(false);
         setShowProfileCard(false);
       }}
+      style={{ willChange: 'width' }}
     >
       {/* Logo */}
       <div className="py-4 px-3">
@@ -128,11 +131,11 @@ const MainSidebar: React.FC = () => {
       {/* Profile section */}
       <div className="mt-auto mb-4 px-3 relative">
         <div 
-          className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center cursor-pointer"
+          className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center cursor-pointer"
           onMouseEnter={() => setShowProfileCard(true)}
           onMouseLeave={() => !isHovered && setShowProfileCard(false)}
         >
-          <User className="w-3 h-3 text-gray-300" />
+          <User className="w-4 h-4 text-gray-300" />
         </div>
 
         {/* Profile card */}
