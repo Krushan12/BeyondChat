@@ -5,10 +5,11 @@ import {
   LifeBuoy, Send, ChevronRight, Moon, Globe,
   HelpCircle, MessageSquare, AlertCircle, FileText, LogOut
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
+import { MainView } from '../../types';
 
-// Define the possible views to match with InboxPage
-type MainView = 'inbox' | 'fin-ai-agent' | 'knowledge' | 'reports' | 'outbound' | 'contacts' | 'get-set-up' | 'search' | 'settings';
+// Using the shared MainView type from types directory
 
 interface MainSidebarProps {
   activeView: MainView;
@@ -66,6 +67,7 @@ const MainSidebarItem: React.FC<MainSidebarItemProps> = ({
 const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showProfileCard, setShowProfileCard] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div 
@@ -95,7 +97,10 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           view="inbox"
           count={4} 
           isActive={activeView === 'inbox'} 
-          onClick={() => onViewChange('inbox')}
+          onClick={() => {
+            onViewChange('inbox');
+            navigate('/inbox');
+          }}
           showLabels={isHovered}
         />
         <MainSidebarItem 
@@ -103,7 +108,10 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           text="Fin AI Agent" 
           view="fin-ai-agent"
           isActive={activeView === 'fin-ai-agent'}
-          onClick={() => onViewChange('fin-ai-agent')}
+          onClick={() => {
+            onViewChange('fin-ai-agent');
+            navigate('/fin-ai-agent');
+          }}
           showLabels={isHovered}
         />
         <MainSidebarItem 
@@ -111,7 +119,10 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           text="Knowledge" 
           view="knowledge"
           isActive={activeView === 'knowledge'}
-          onClick={() => onViewChange('knowledge')}
+          onClick={() => {
+            onViewChange('knowledge');
+            navigate('/knowledge');
+          }}
           showLabels={isHovered}
         />
         <MainSidebarItem 
@@ -119,7 +130,10 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           text="Reports" 
           view="reports"
           isActive={activeView === 'reports'}
-          onClick={() => onViewChange('reports')}
+          onClick={() => {
+            onViewChange('reports');
+            navigate('/reports');
+          }}
           showLabels={isHovered}
         />
         <MainSidebarItem 
@@ -127,7 +141,10 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           text="Outbound" 
           view="outbound"
           isActive={activeView === 'outbound'}
-          onClick={() => onViewChange('outbound')}
+          onClick={() => {
+            onViewChange('outbound');
+            navigate('/outbound');
+          }}
           showLabels={isHovered}
         />
         <MainSidebarItem 
@@ -135,7 +152,10 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           text="Contacts" 
           view="contacts"
           isActive={activeView === 'contacts'}
-          onClick={() => onViewChange('contacts')}
+          onClick={() => {
+            onViewChange('contacts');
+            navigate('/contacts');
+          }}
           showLabels={isHovered}
         />
         <MainSidebarItem 
@@ -143,7 +163,10 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           text="Get set up" 
           view="get-set-up"
           isActive={activeView === 'get-set-up'}
-          onClick={() => onViewChange('get-set-up')}
+          onClick={() => {
+            onViewChange('get-set-up');
+            navigate('/get-set-up');
+          }}
           showLabels={isHovered}
         />
         <MainSidebarItem 
@@ -151,7 +174,10 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           text="Search" 
           view="search"
           isActive={activeView === 'search'}
-          onClick={() => onViewChange('search')}
+          onClick={() => {
+            onViewChange('search');
+            navigate('/search');
+          }}
           showLabels={isHovered}
         />
         <MainSidebarItem 
@@ -159,7 +185,10 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           text="Settings" 
           view="settings"
           isActive={activeView === 'settings'}
-          onClick={() => onViewChange('settings')}
+          onClick={() => {
+            onViewChange('settings');
+            navigate('/settings');
+          }}
           showLabels={isHovered}
         />
       </div>

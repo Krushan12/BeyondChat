@@ -1,7 +1,7 @@
 import React from 'react';
 import { MoreHorizontal, Search, Plus } from 'lucide-react';
 import clsx from 'clsx';
-import { Conversation } from '../../pages/InboxPage';
+import { Conversation } from '../../types';
 
 interface ConversationItemProps {
   conversation: Conversation;

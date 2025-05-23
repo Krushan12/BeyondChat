@@ -6,6 +6,7 @@ import {
   Star, AtSign
 } from 'lucide-react';
 import clsx from 'clsx';
+import { MainView } from '../../types';
 
 interface SidebarItemProps {
   icon: React.ReactNode;
@@ -101,7 +102,12 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
   );
 };
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  activeView?: MainView;
+  onViewChange?: (view: MainView) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ activeView = 'inbox', onViewChange }) => {
   return (
     <div className="w-64 h-full bg-[#1C1C1E] border-r border-[#3A3A3C] flex flex-col text-gray-200">
       <div className="p-4 border-b border-[#3A3A3C] flex items-center justify-between">
@@ -118,13 +124,43 @@ const Sidebar: React.FC = () => {
           icon={<MessageCircle />} 
           text="Your inbox" 
           count={4} 
-          isActive={true} 
+          isActive={activeView === 'inbox'} 
+          onClick={() => onViewChange && onViewChange('inbox')}
         />
-        <SidebarItem icon={<AtSign />} text="Mentions" count={0} />
-        <SidebarItem icon={<Star />} text="Created by you" count={0} />
-        <SidebarItem icon={<Inbox />} text="All" count={4} />
-        <SidebarItem icon={<User />} text="Unassigned" count={0} />
-        <SidebarItem icon={<TicketCheck />} text="Dashboard" count={0} />
+        <SidebarItem 
+          icon={<AtSign />} 
+          text="Mentions" 
+          count={0} 
+          isActive={activeView === 'mentions'}
+          onClick={() => onViewChange && onViewChange('mentions')}
+        />
+        <SidebarItem 
+          icon={<Star />} 
+          text="Created by you" 
+          count={0} 
+          onClick={() => onViewChange && onViewChange('created-by-you')}
+        />
+        <SidebarItem 
+          icon={<Inbox />} 
+          text="All" 
+          count={4} 
+          isActive={activeView === 'all'}
+          onClick={() => onViewChange && onViewChange('all')}
+        />
+        <SidebarItem 
+          icon={<User />} 
+          text="Unassigned" 
+          count={0} 
+          isActive={activeView === 'unassigned'}
+          onClick={() => onViewChange && onViewChange('unassigned')}
+        />
+        <SidebarItem 
+          icon={<TicketCheck />} 
+          text="Dashboard" 
+          count={0} 
+          isActive={activeView === 'dashboard'}
+          onClick={() => onViewChange && onViewChange('dashboard')}
+        />
         
         <div className="h-px bg-[#3A3A3C] my-3"></div>
         
