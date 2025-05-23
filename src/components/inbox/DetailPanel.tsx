@@ -11,7 +11,7 @@ interface DetailSectionProps {
 const DetailSection: React.FC<DetailSectionProps> = ({ 
   title, children, isCollapsible = true 
 }) => {
-  const [isCollapsed, setIsCollapsed] = React.useState(false);
+  const [isCollapsed, setIsCollapsed] = React.useState(true);
   
   return (
     <div className="border-b border-[#3A3A3C] py-3">

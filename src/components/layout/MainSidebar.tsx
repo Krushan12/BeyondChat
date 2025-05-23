@@ -7,9 +7,18 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 
+// Define the possible views to match with InboxPage
+type MainView = 'inbox' | 'fin-ai-agent' | 'knowledge' | 'reports' | 'outbound' | 'contacts' | 'get-set-up' | 'search' | 'settings';
+
+interface MainSidebarProps {
+  activeView: MainView;
+  onViewChange: (view: MainView) => void;
+}
+
 interface MainSidebarItemProps {
   icon: React.ReactNode;
   text: string;
+  view: MainView;
   count?: number;
   isActive?: boolean;
   onClick?: () => void;
@@ -18,6 +27,7 @@ interface MainSidebarItemProps {
 
 const MainSidebarItem: React.FC<MainSidebarItemProps> = ({ 
   icon, text, count, isActive = false, onClick, showLabels = false
+  // view is used for type checking but not directly in the component
 }) => {
   return (
     <div 
@@ -53,7 +63,7 @@ const MainSidebarItem: React.FC<MainSidebarItemProps> = ({
   );
 };
 
-const MainSidebar: React.FC = () => {
+const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showProfileCard, setShowProfileCard] = useState(false);
 
@@ -82,48 +92,74 @@ const MainSidebar: React.FC = () => {
         <MainSidebarItem 
           icon={<Inbox />} 
           text="Inbox" 
+          view="inbox"
           count={4} 
-          isActive={true} 
+          isActive={activeView === 'inbox'} 
+          onClick={() => onViewChange('inbox')}
           showLabels={isHovered}
         />
         <MainSidebarItem 
           icon={<MessageCircle />} 
           text="Fin AI Agent" 
+          view="fin-ai-agent"
+          isActive={activeView === 'fin-ai-agent'}
+          onClick={() => onViewChange('fin-ai-agent')}
           showLabels={isHovered}
         />
         <MainSidebarItem 
           icon={<BookOpen />} 
           text="Knowledge" 
+          view="knowledge"
+          isActive={activeView === 'knowledge'}
+          onClick={() => onViewChange('knowledge')}
           showLabels={isHovered}
         />
         <MainSidebarItem 
           icon={<BarChart2 />} 
           text="Reports" 
+          view="reports"
+          isActive={activeView === 'reports'}
+          onClick={() => onViewChange('reports')}
           showLabels={isHovered}
         />
         <MainSidebarItem 
           icon={<Send />} 
           text="Outbound" 
+          view="outbound"
+          isActive={activeView === 'outbound'}
+          onClick={() => onViewChange('outbound')}
           showLabels={isHovered}
         />
         <MainSidebarItem 
           icon={<Users />} 
           text="Contacts" 
+          view="contacts"
+          isActive={activeView === 'contacts'}
+          onClick={() => onViewChange('contacts')}
           showLabels={isHovered}
         />
         <MainSidebarItem 
           icon={<LifeBuoy />} 
           text="Get set up" 
+          view="get-set-up"
+          isActive={activeView === 'get-set-up'}
+          onClick={() => onViewChange('get-set-up')}
           showLabels={isHovered}
         />
         <MainSidebarItem 
           icon={<Search />} 
           text="Search" 
+          view="search"
+          isActive={activeView === 'search'}
+          onClick={() => onViewChange('search')}
           showLabels={isHovered}
         />
         <MainSidebarItem 
           icon={<Settings />} 
           text="Settings" 
+          view="settings"
+          isActive={activeView === 'settings'}
+          onClick={() => onViewChange('settings')}
           showLabels={isHovered}
         />
       </div>
