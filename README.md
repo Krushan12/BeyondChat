@@ -6,18 +6,7 @@ A modern customer messaging platform clone built with React, TypeScript, and Tai
 
 Check out the live demo: [Beyond Chat](https://beyond-chat-zeta.vercel.app/)
 
-## Features
 
-- 💬 Real-time messaging interface
-- 🤖 AI-powered chatbot integration
-- 📱 Responsive design
-- 📨 Multi-channel support (Messenger, Email, WhatsApp, Phone)
-- 📊 Analytics and reporting
-- 🎯 Customer segmentation
-- 🔄 Workflow automation
-- 🎨 Dark mode interface
-- 📝 Knowledge base management
-- 🔍 Advanced search capabilities
 
 ## Tech Stack
 
@@ -31,8 +20,8 @@ Check out the live demo: [Beyond Chat](https://beyond-chat-zeta.vercel.app/)
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/intercom-clone.git
-   cd intercom-clone
+   git clone https://github.com/Krushan12/BeyondChat.git
+   
    ```
 
 2. Install dependencies:
@@ -61,6 +50,4 @@ src/
 
 Contributions are welcome! Feel free to submit a Pull Request.
 
-## License
 
-This project is open source and available under the [MIT License](LICENSE).
