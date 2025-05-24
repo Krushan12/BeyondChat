@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { 
-  Inbox, Search, Settings, User, 
+  Inbox, Settings, User, 
   BarChart2, BookOpen, Users, MessageCircle,
-  LifeBuoy, Send, ChevronRight, Moon, Globe,
+  Send, Moon, Globe, ChevronRight,
   HelpCircle, MessageSquare, AlertCircle, FileText, LogOut
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ const MainSidebarItem: React.FC<MainSidebarItemProps> = ({
     <div 
       className={clsx(
         "flex items-center py-3 cursor-pointer relative group",
-        isActive ? "bg-[#2C2C2E] text-white rounded-l-md" : "text-gray-200 hover:text-white"
+        isActive ? "bg-[#2C2C2E]/90 text-white rounded-l-md" : "text-gray-400 hover:text-white"
       )}
       onClick={onClick}
     >
@@ -72,7 +72,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
   return (
     <div 
       className={clsx(
-        "fixed left-0 top-0 h-full bg-[#1C1C1E]/90 backdrop-blur-sm border-r border-[#3A3A3C] flex flex-col z-10 transition-all duration-500 ease-in-out",
+        "fixed left-0 top-0 h-full bg-[#1C1C1E]/95 backdrop-blur-[2px] border-r border-[#2C2C2E] flex flex-col z-10 transition-all duration-500 ease-in-out",
         isHovered ? "w-40" : "w-12"
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -155,28 +155,6 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ activeView, onViewChange }) =
           onClick={() => {
             onViewChange('contacts');
             navigate('/contacts');
-          }}
-          showLabels={isHovered}
-        />
-        <MainSidebarItem 
-          icon={<LifeBuoy />} 
-          text="Get set up" 
-          view="get-set-up"
-          isActive={activeView === 'get-set-up'}
-          onClick={() => {
-            onViewChange('get-set-up');
-            navigate('/get-set-up');
-          }}
-          showLabels={isHovered}
-        />
-        <MainSidebarItem 
-          icon={<Search />} 
-          text="Search" 
-          view="search"
-          isActive={activeView === 'search'}
-          onClick={() => {
-            onViewChange('search');
-            navigate('/search');
           }}
           showLabels={isHovered}
         />

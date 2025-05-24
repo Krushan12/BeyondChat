@@ -1,30 +1,57 @@
 import React from 'react';
-import Header from '../components/inbox/Header';
 import MainSidebar from '../components/layout/MainSidebar';
+import ReportsSidebar from '../components/reports/ReportsSidebar';
+import ReportsHeader from '../components/reports/ReportsHeader';
+import AllReportsView from '../components/reports/AllReportsView';
+import OverviewView from '../components/reports/OverviewView';
+import YourReportsView from '../components/reports/YourReportsView';
 import { MainView } from '../types';
 
 const ReportsPage: React.FC = () => {
   const [activeView, setActiveView] = React.useState<MainView>('reports');
+  const [activeReportView, setActiveReportView] = React.useState('overview');
+  const [activeTab, setActiveTab] = React.useState('intercom');
+
+  const handleReportViewChange = (view: string) => {
+    if (view === 'your-reports') {
+      setActiveReportView('all-reports');
+      setActiveTab('your');
+    } else {
+      setActiveReportView(view);
+    }
+  };
+
+  const renderContent = () => {
+    if (activeReportView === 'overview') {
+      return <OverviewView />;
+    }
+    
+    if (activeReportView === 'all-reports') {
+      if (activeTab === 'your') {
+        return <YourReportsView />;
+      }
+      return <AllReportsView />;
+    }
+
+    return null;
+  };
 
   return (
-    <div className="flex h-screen bg-[#1C1C1E]">
+    <div className="flex h-screen bg-[#1C1C1E] overflow-hidden">
       <MainSidebar onViewChange={setActiveView} activeView={activeView} />
-      <div className="flex flex-col flex-1 overflow-hidden ml-12">
-        <Header />
-        <div className="flex flex-1 overflow-hidden">
-          <div className="flex-1 flex items-center justify-center bg-[#1C1C1E]">
-            <div className="text-center p-6">
-              <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-[#2C2C2E] flex items-center justify-center">
-                <svg className="w-8 h-8 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 20V10M12 20V4M6 20v-6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-medium text-white mb-2">Reports</h3>
-              <p className="text-sm text-gray-400 max-w-md">
-                View analytics and performance metrics for your team
-              </p>
-            </div>
-          </div>
+      <div className="flex flex-1 ml-12">
+        <ReportsSidebar 
+          activeView={activeReportView}
+          activeTab={activeTab}
+          onViewChange={handleReportViewChange} 
+        />
+        <div className="flex-1 overflow-hidden flex flex-col">
+          <ReportsHeader 
+            view={activeReportView} 
+            onTabChange={setActiveTab}
+            activeTab={activeTab}
+          />
+          {renderContent()}
         </div>
       </div>
     </div>

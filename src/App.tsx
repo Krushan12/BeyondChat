@@ -1,4 +1,3 @@
-
 import { 
   Route, 
   createRoutesFromElements,
@@ -12,8 +11,6 @@ import KnowledgePage from './pages/KnowledgePage';
 import ReportsPage from './pages/ReportsPage';
 import OutboundPage from './pages/OutboundPage';
 import ContactsPage from './pages/ContactsPage';
-import GetSetUpPage from './pages/GetSetUpPage';
-import SearchPage from './pages/SearchPage';
 import SettingsPage from './pages/SettingsPage';
 import './index.css';
 
@@ -28,8 +25,6 @@ const router = createBrowserRouter(
       <Route path="/reports" element={<ReportsPage />} />
       <Route path="/outbound" element={<OutboundPage />} />
       <Route path="/contacts" element={<ContactsPage />} />
-      <Route path="/get-set-up" element={<GetSetUpPage />} />
-      <Route path="/search" element={<SearchPage />} />
       <Route path="/settings" element={<SettingsPage />} />
     </>
   ),
